@@ -33,7 +33,7 @@ public class MainPage2 extends javax.swing.JFrame {
         tblModel.setRowCount(0);
         ArrayList<Students> list = new ArrayList<Students>();
         try {
-            FileInputStream fis = new FileInputStream("C:\\xampp\\htdocs\\StudentList.txt");
+            FileInputStream fis = new FileInputStream("StudentList.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
             list = (ArrayList<Students>) ois.readObject();
             ois.close();
@@ -260,7 +260,7 @@ public class MainPage2 extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
-        File file = new File("C:\\xampp\\htdocs\\StudentList.txt");
+        File file = new File("StudentList.txt");
         if(!file.exists()){
             try {
                 file.createNewFile();
@@ -299,7 +299,7 @@ public class MainPage2 extends javax.swing.JFrame {
         tblModel.setRowCount(0);
         ArrayList<Students> list = new ArrayList<Students>();
         try {
-            FileInputStream fis = new FileInputStream("C:\\xampp\\htdocs\\StudentList.txt");
+            FileInputStream fis = new FileInputStream("StudentList.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
             list = (ArrayList<Students>) ois.readObject();
             ois.close();

@@ -28,7 +28,7 @@ import javax.swing.table.TableRowSorter;
 public class MainPage extends javax.swing.JFrame {
 ArrayList<Students> list = new ArrayList<Students>();
 ArrayList<Students> S_list = new ArrayList<Students>();
-File file = new File("C:\\xampp\\htdocs\\StudentList.txt");
+File file = new File("StudentList.txt");
  String sClass;
  String Name;
  String Course;
@@ -252,10 +252,11 @@ File file = new File("C:\\xampp\\htdocs\\StudentList.txt");
                             .addComponent(lbScore)
                             .addComponent(txtScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDelete)
-                    .addComponent(btnAdd)
-                    .addComponent(btnUpdate))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAdd)
+                        .addComponent(btnUpdate)))
                 .addContainerGap())
         );
 
@@ -407,7 +408,7 @@ File file = new File("C:\\xampp\\htdocs\\StudentList.txt");
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
          
-        File file = new File("C:\\xampp\\htdocs\\StudentList.txt");
+        File file = new File("StudentList.txt");
         if(!file.exists()){
             try {
                 file.createNewFile();
@@ -446,7 +447,7 @@ File file = new File("C:\\xampp\\htdocs\\StudentList.txt");
        tblModel.setRowCount(0);
        ArrayList<Students> list = new ArrayList<Students>();
         try {
-            FileInputStream fis = new FileInputStream("C:\\xampp\\htdocs\\StudentList.txt");          
+            FileInputStream fis = new FileInputStream("StudentList.txt");          
             ObjectInputStream ois = new ObjectInputStream(fis);
             list = (ArrayList<Students>) ois.readObject();
             ois.close();
