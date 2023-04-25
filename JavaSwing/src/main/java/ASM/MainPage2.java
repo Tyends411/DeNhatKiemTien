@@ -340,17 +340,17 @@ public class MainPage2 extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         DefaultTableModel tblModel = (DefaultTableModel)table.getModel();
-
+        
         String sClass;
         String Name;
         String Course;
-        double Score;
-
-        if(table.getSelectedRowCount() == 1){
-            //Update Class
+        double Score;    
+                
+            if(table.getSelectedRowCount() == 1){
+            //Update Class 
             try{
-                sClass = txtClass.getText();
-
+                sClass = txtClass.getText().trim();
+                
                 if(!sClass.isEmpty()){
                     tblModel.setValueAt(sClass, table.getSelectedRow(), 0);
                     JOptionPane.showMessageDialog(this, "Table updated!");
@@ -359,24 +359,26 @@ public class MainPage2 extends javax.swing.JFrame {
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Class!");
-            }
-
+                return;
+            } 
+            
             //Update Name
             try{
-                Name = txtName.getText();
-
+                Name = txtName.getText().trim();
+                
                 if(!Name.isEmpty()){
                     tblModel.setValueAt(Name, table.getSelectedRow(), 1);
-
+                    
                 }else{
                     throw new Exception();
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Name!");
+                return;
             }
             //Update Course
             try{
-                Course = txtCourse.getText();
+                Course = txtCourse.getText().trim();                
                 if(!Course.isEmpty()){
                     tblModel.setValueAt(Course, table.getSelectedRow(), 2);
 
@@ -385,21 +387,27 @@ public class MainPage2 extends javax.swing.JFrame {
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Course!");
+                return;
             }
-
+                
             try{
-                Score = Double.parseDouble(txtScore.getText());
+                Score = Double.parseDouble(txtScore.getText().trim());              
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(this, "Only accept Number type!");
+                return;
+            }    
+                Object rcd[] = {sClass, Name, Course, Score};
+                tblModel.addRow(rcd);
+                tblModel.removeRow(table.getSelectedRow());
             }
-
-        }
-        else if(table.getSelectedRowCount() == 0){
+            else if(table.getSelectedRowCount() == 0){
             JOptionPane.showMessageDialog(this, "Null data table!");
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Please choose a record to update!");
-        }
+            
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Please choose a record to update!");
+               
+            }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -422,6 +430,7 @@ public class MainPage2 extends javax.swing.JFrame {
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Class!");
+                return;
             }
 
             //Update Name
@@ -433,6 +442,7 @@ public class MainPage2 extends javax.swing.JFrame {
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Name!");
+                return;
             }
             //Update Course
             try{
@@ -442,12 +452,14 @@ public class MainPage2 extends javax.swing.JFrame {
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Course!");
+                return;
             }
 
             try{
                 Score = Double.parseDouble(txtScore.getText());
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(this, "Only accept Number type!");
+                return;
             }
 
             Object rcd[] = {sClass, Name, Course, Score};

@@ -276,41 +276,45 @@ File file = new File("StudentList.txt");
         double Score = 0;
         
          try{
-                sClass = txtClass.getText();
+                sClass = txtClass.getText().trim();
                 
                 if(sClass.isEmpty()){                 
                     throw new Exception();
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Class!");
+                return;
             } 
             
             //Update Name
             try{
-                Name = txtName.getText();
+                Name = txtName.getText().trim();
                 
                 if(Name.isEmpty()){                  
                     throw new Exception();
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Name!");
+                return;
             }
             //Update Course
             try{
-                Course = txtCourse.getText();                
+                Course = txtCourse.getText().trim();                
                 if(Course.isEmpty()){                  
                     throw new Exception();
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Course!");
+                return;
             }
                 
             try{
-                Score = Double.parseDouble(txtScore.getText());              
+                Score = Double.parseDouble(txtScore.getText().trim());              
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(this, "Only accept Number type!");
+                return;
             }    
- 
+ try{
         Object rcd[] = {sClass, Name, Course, Score};
         tblModel.addRow(rcd);
         JOptionPane.showMessageDialog(this, "Record added successfully!");
@@ -319,9 +323,14 @@ File file = new File("StudentList.txt");
         txtClass.setText("");
         txtName.setText("");
         txtCourse.setText("");
-        txtScore.setText("");       
+        txtScore.setText(""); 
+ }catch(Exception e){
+             JOptionPane.showMessageDialog(this, "There's something wrong when input the record");
+             return;
+ }
     }catch(Exception e){
         JOptionPane.showMessageDialog(this, "Empty input fields!");
+        return;
     }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -332,12 +341,15 @@ File file = new File("StudentList.txt");
         if(table.getSelectedRowCount()==1){
             tblModel.removeRow(table.getSelectedRow());
             JOptionPane.showMessageDialog(this, "Record Deleted.");
+            return;
         }
         else if(table.getRowCount()==0){
             JOptionPane.showMessageDialog(this, "Table is empty!");
+            return;
         }
         else{
             JOptionPane.showMessageDialog(this, "PLease choose a record to delete.");
+            return;
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -353,7 +365,7 @@ File file = new File("StudentList.txt");
             if(table.getSelectedRowCount() == 1){
             //Update Class 
             try{
-                sClass = txtClass.getText();
+                sClass = txtClass.getText().trim();
                 
                 if(!sClass.isEmpty()){
                     tblModel.setValueAt(sClass, table.getSelectedRow(), 0);
@@ -363,11 +375,12 @@ File file = new File("StudentList.txt");
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Class!");
+                return;
             } 
             
             //Update Name
             try{
-                Name = txtName.getText();
+                Name = txtName.getText().trim();
                 
                 if(!Name.isEmpty()){
                     tblModel.setValueAt(Name, table.getSelectedRow(), 1);
@@ -377,10 +390,11 @@ File file = new File("StudentList.txt");
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Name!");
+                return;
             }
             //Update Course
             try{
-                Course = txtCourse.getText();                
+                Course = txtCourse.getText().trim();                
                 if(!Course.isEmpty()){
                     tblModel.setValueAt(Course, table.getSelectedRow(), 2);
 
@@ -389,20 +403,26 @@ File file = new File("StudentList.txt");
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Empty input Course!");
+                return;
             }
                 
             try{
-                Score = Double.parseDouble(txtScore.getText());              
+                Score = Double.parseDouble(txtScore.getText().trim());              
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(this, "Only accept Number type!");
+                return;
             }    
-                
+                Object rcd[] = {sClass, Name, Course, Score};
+                tblModel.addRow(rcd);
+                tblModel.removeRow(table.getSelectedRow());
             }
             else if(table.getSelectedRowCount() == 0){
             JOptionPane.showMessageDialog(this, "Null data table!");
+            
             }
             else{
                 JOptionPane.showMessageDialog(this, "Please choose a record to update!");
+               
             }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
